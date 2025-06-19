@@ -2,12 +2,9 @@ package DB_Introduction_Exercise;
 
 import java.sql.*;
 import java.util.Properties;
-import java.util.Scanner;
 
 public class GetVillainsNames {
     public static void main(String[] args) throws SQLException {
-        Scanner sc = new Scanner(System.in);
-
         Properties props = new Properties();
         props.setProperty("user", "root");
         props.setProperty("password", "");
