@@ -6,13 +6,12 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class EntityManager<E> implements DbContext<E> {
     private Connection connection;
@@ -24,8 +23,8 @@ public class EntityManager<E> implements DbContext<E> {
     }
 
     @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.FIELD)
     public @interface Id {
-
     }
 
     @Retention(RetentionPolicy.RUNTIME)
@@ -82,16 +81,81 @@ public class EntityManager<E> implements DbContext<E> {
     }
 
     private boolean doInsert(E entity, Field primary) throws IllegalAccessException, SQLException {
-        String query = "UPDATE " + this.getTableName(entity.getClass()) + " SET";
+        Class<?> entityClass = entity.getClass();
 
-        return connection.prepareStatement(query).execute();
+        List<Field> fields = Arrays.stream(entityClass.getDeclaredFields())
+                .filter(f -> f.isAnnotationPresent(Column.class))
+                .toList();
+
+        String columns = fields.stream()
+                .map(f -> f.getAnnotation(Column.class).name())
+                .collect(Collectors.joining(", "));
+
+        String values = fields.stream()
+                .map(f -> "?")
+                .collect(Collectors.joining(", "));
+
+        String tableName = this.getTableName(entity.getClass());
+        String query = "INSERT INTO " + tableName + " (";
+        query += columns + ") VALUES (" + values + ")";
+
+
+        PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+        for (int i = 0; i < fields.size(); i++) {
+            fields.get(i).setAccessible(true);
+            Object value = fields.get(i).get(entity);
+            stmt.setObject(i + 1, value);
+        }
+
+        int rows = stmt.executeUpdate();
+
+        ResultSet generatedKeys = stmt.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            Object idValue = generatedKeys.getObject(1);
+            primary.setAccessible(true);
+
+            if (primary.getType().equals(long.class) || primary.getType().equals(Long.class)) {
+                primary.set(entity, ((Number) idValue).longValue());
+            } else {
+                primary.set(entity, idValue);
+            }
+        }
+
+        return rows > 0;
     }
 
     private boolean doUpdate(E entity, Field primary) throws IllegalAccessException, SQLException {
-        String tableName = this.getTableName(entity.getClass());
-        String query = "INSERT INTO " + this.getTableName(entity.getClass()) + " (";
+        Class<?> entityClass = entity.getClass();
 
-        return connection.prepareStatement(query).execute();
+        List<Field> fields = Arrays.stream(entityClass.getDeclaredFields())
+                .filter(f -> f.isAnnotationPresent(Column.class))
+                .toList();
+
+        String setFields = fields.stream()
+                .map(f -> f.getAnnotation(Column.class).name() + " = ?")
+                .collect(Collectors.joining(", "));
+
+        String primaryKeyColumn = primary.getAnnotation(Column.class).name();
+        Object primaryKeyValue;
+        primary.setAccessible(true);
+        primaryKeyValue = primary.get(entity);
+
+        String tableName = this.getTableName(entity.getClass());
+        String query = "UPDATE " + tableName + " SET";
+        query += setFields + " WHERE " + primaryKeyColumn + " = ?";
+
+        PreparedStatement stmt = connection.prepareStatement(query);
+
+        for (int i = 0; i < fields.size(); i++) {
+            fields.get(i).setAccessible(true);
+            Object value = fields.get(i).get(entity);
+            stmt.setObject(i + 1, value);
+        }
+
+        stmt.setObject(fields.size() + 1, primaryKeyValue);
+
+        return stmt.executeUpdate() > 0;
     }
 
     @Override
