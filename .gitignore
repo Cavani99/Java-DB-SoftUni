@@ -33,3 +33,7 @@ replay_pid*
 /.idea/encodings.xml
 /Spring Data.iml
 /Spring Data/Spring Data.iml
+/Spring Data/Introduction to Hibernate/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+/Spring Data/Introduction to Hibernate/target/classes/META-INF/persistence.xml
+/Spring Data/Introduction to Hibernate/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+/Spring Data/Introduction to Hibernate/src/main/resources/META-INF/persistence.xml
