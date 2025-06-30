@@ -10,7 +10,6 @@ import jakarta.persistence.Persistence;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GetEmployeesWithProject {
