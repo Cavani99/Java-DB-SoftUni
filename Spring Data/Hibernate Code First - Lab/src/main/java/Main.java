@@ -1,7 +1,7 @@
-import entities.Bike;
-import entities.Car;
-import entities.Plane;
-import entities.Truck;
+import entities.vehicles.Bike;
+import entities.vehicles.Car;
+import entities.vehicles.Plane;
+import entities.vehicles.Truck;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -10,13 +10,17 @@ import java.math.BigDecimal;
 
 public class Main {
     public static void main(String[] args) {
+        getTaskTwo();
+    }
+
+    public static void getTaskOne() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("vehicle_hierarchy");
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
 
-        //Car car = new Car("Toyota", new BigDecimal("10000.24"), "diesel", 4);
-        //em.persist(car);
+        Car car = new Car("Toyota", new BigDecimal("10000.24"), "diesel", 4);
+        em.persist(car);
 
         Truck truck = new Truck("MAN", new BigDecimal("230000.24"), "95", 125.00);
         em.persist(truck);
@@ -28,5 +32,15 @@ public class Main {
         em.persist(plane);
 
         em.getTransaction().commit();
+        em.close();
+        emf.close();
+    }
+
+    public static void getTaskTwo() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("relations");
+        EntityManager em = emf.createEntityManager();
+
+        em.close();
+        emf.close();
     }
 }

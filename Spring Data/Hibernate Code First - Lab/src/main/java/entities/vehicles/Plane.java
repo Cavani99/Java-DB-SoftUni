@@ -1,9 +1,8 @@
-package entities;
+package entities.vehicles;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.criteria.CriteriaBuilder;
 
 import java.math.BigDecimal;
 
