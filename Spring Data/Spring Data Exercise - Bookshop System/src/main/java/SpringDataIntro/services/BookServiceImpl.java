@@ -1,7 +1,7 @@
 package SpringDataIntro.services;
 
-import com.example.SpringDataIntro.models.Book;
-import com.example.SpringDataIntro.repositories.BookRepository;
+import SpringDataIntro.models.Book;
+import SpringDataIntro.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

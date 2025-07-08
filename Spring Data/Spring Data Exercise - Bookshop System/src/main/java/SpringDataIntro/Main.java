@@ -1,12 +1,12 @@
 package SpringDataIntro;
 
-
-import com.example.SpringDataIntro.repositories.AuthorRepository;
-import com.example.SpringDataIntro.repositories.BookRepository;
-import com.example.SpringDataIntro.repositories.CategoryRepository;
-import com.example.SpringDataIntro.services.AuthorService;
-import com.example.SpringDataIntro.services.BookService;
-import com.example.SpringDataIntro.services.CategoryService;
+import SpringDataIntro.models.*;
+import SpringDataIntro.repositories.AuthorRepository;
+import SpringDataIntro.repositories.BookRepository;
+import SpringDataIntro.repositories.CategoryRepository;
+import SpringDataIntro.services.AuthorService;
+import SpringDataIntro.services.BookService;
+import SpringDataIntro.services.CategoryService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

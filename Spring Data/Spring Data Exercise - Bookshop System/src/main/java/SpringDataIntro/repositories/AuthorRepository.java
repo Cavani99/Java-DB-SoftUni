@@ -1,6 +1,6 @@
 package SpringDataIntro.repositories;
 
-import com.example.SpringDataIntro.models.Author;
+import SpringDataIntro.models.Author;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

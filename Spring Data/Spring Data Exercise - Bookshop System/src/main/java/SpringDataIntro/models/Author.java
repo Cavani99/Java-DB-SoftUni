@@ -1,5 +1,8 @@
 package SpringDataIntro.models;
 
+import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+
 import java.util.Set;
 
 @Entity

@@ -1,6 +1,6 @@
 package SpringDataIntro.services;
 
-import com.example.SpringDataIntro.models.Category;
+import SpringDataIntro.models.Category;
 
 import java.util.Set;
 

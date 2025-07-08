@@ -1,6 +1,6 @@
 package SpringDataIntro.repositories;
 
-import com.example.SpringDataIntro.models.Category;
+import SpringDataIntro.models.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
 package SpringDataIntro.services;
 
-import com.example.SpringDataIntro.models.Category;
-import com.example.SpringDataIntro.repositories.CategoryRepository;
+import SpringDataIntro.models.Category;
+import SpringDataIntro.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

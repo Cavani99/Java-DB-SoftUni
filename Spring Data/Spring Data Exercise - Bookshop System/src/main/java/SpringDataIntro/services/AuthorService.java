@@ -1,6 +1,6 @@
 package SpringDataIntro.services;
 
-import com.example.SpringDataIntro.models.Author;
+import SpringDataIntro.models.Author;
 
 public interface AuthorService {
     Author getRandomAuthor();

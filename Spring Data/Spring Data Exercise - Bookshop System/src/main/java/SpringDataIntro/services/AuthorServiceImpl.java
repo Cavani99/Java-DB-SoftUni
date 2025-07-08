@@ -1,8 +1,8 @@
 package SpringDataIntro.services;
 
-import com.example.SpringDataIntro.models.Author;
-import com.example.SpringDataIntro.repositories.AuthorRepository;
-import com.example.SpringDataIntro.repositories.BookRepository;
+import SpringDataIntro.models.Author;
+import SpringDataIntro.repositories.AuthorRepository;
+import SpringDataIntro.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
