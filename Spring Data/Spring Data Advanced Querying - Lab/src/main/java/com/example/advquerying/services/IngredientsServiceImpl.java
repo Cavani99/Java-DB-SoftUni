@@ -60,4 +60,10 @@ public class IngredientsServiceImpl implements IngredientsService {
 
         System.out.printf("%s Deleted!\n", name);
     }
+
+    @Transactional
+    @Override
+    public void updatePriceForIngredients(List<String> names) {
+        ingredientsRepository.updateByNames(names);
+    }
 }

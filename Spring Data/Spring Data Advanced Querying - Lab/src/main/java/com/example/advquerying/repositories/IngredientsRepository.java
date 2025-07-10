@@ -35,4 +35,10 @@ public interface IngredientsRepository extends JpaRepository<Ingredient, Long> {
     @Query("DELETE FROM Ingredient as i " +
             "WHERE i.name = :name")
     int deleteByName(@Param("name") String name);
+
+    @Modifying
+    @Query("UPDATE Ingredient as i " +
+            "SET i.price = i.price + i.price * 0.1" +
+            "WHERE i.name IN :names")
+    int updateByNames(@Param("names") List<String> names);
 }

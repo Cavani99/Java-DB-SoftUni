@@ -42,6 +42,12 @@ public class Main implements CommandLineRunner {
 
         ingredientsService.shampoosInGivenIngredients(stringList);*/
         //ingredientsService.shampoosWithIngredientsLessThan(2);
-        ingredientsService.deleteByName("Nettle");
+        //ingredientsService.deleteByName("Nettle");
+
+        List<String> stringList = new ArrayList<>();
+        stringList.add("Apple");
+        stringList.add("Macadamia Oil");
+
+        ingredientsService.updatePriceForIngredients(stringList);
     }
 }
