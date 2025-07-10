@@ -1,14 +1,13 @@
 package com.example.advquerying;
 
+import com.example.advquerying.entities.Ingredient;
 import com.example.advquerying.services.IngredientsService;
 import com.example.advquerying.services.ShampooService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Scanner;
+import java.util.*;
 
 @Component
 public class Main implements CommandLineRunner {
@@ -35,6 +34,11 @@ public class Main implements CommandLineRunner {
         strings.add("Apple");
 
         ingredientsService.ingredientsInStrings(strings);*/
-        shampooService.countShampoosLessThanPrice(BigDecimal.valueOf(8.50));
+        //shampooService.countShampoosLessThanPrice(BigDecimal.valueOf(8.50));
+        List<String> stringList = new ArrayList<>();
+        stringList.add("Berry");
+        stringList.add("Mineral-Collagen");
+
+        ingredientsService.shampoosInGivenIngredients(stringList);
     }
 }
