@@ -11,4 +11,6 @@ public interface ShampooService {
     void shampoosBySizeOrLabel(Size size, long label);
 
     void shampoosByPrice(BigDecimal price);
+
+    void countShampoosLessThanPrice(BigDecimal price);
 }

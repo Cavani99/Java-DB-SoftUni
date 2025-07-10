@@ -1,5 +1,6 @@
 package com.example.advquerying.repositories;
 
+import com.example.advquerying.entities.Ingredient;
 import com.example.advquerying.entities.Label;
 import com.example.advquerying.entities.Shampoo;
 import com.example.advquerying.entities.Size;
@@ -16,4 +17,5 @@ public interface ShampooRepository extends JpaRepository<Shampoo, Long> {
     List<Shampoo> findBySizeOrLabel_IdOrderByPriceAsc(Size size, long label);
 
     List<Shampoo> findByPriceGreaterThanOrderByPriceDesc(BigDecimal price);
+    List<Shampoo> findByPriceLessThan(BigDecimal price);
 }

@@ -40,4 +40,11 @@ public class ShampooServiceImpl implements ShampooService{
 
         shampooList.forEach(shampoo -> System.out.printf("%s %s %.2flv.\n", shampoo.getBrand(), shampoo.getSize(), shampoo.getPrice()));
     }
+
+    @Override
+    public void countShampoosLessThanPrice(BigDecimal price) {
+        List<Shampoo> shampooList = shampooRepository.findByPriceLessThan(price);
+
+        System.out.println(shampooList.size());
+    }
 }
