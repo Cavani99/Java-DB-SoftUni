@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 @Service
@@ -65,5 +66,11 @@ public class IngredientsServiceImpl implements IngredientsService {
     @Override
     public void updatePriceForIngredients(List<String> names) {
         ingredientsRepository.updateByNames(names);
+    }
+
+    @Transactional
+    @Override
+    public void updateByPriceForIngredients(BigDecimal price, List<String> names) {
+        ingredientsRepository.updateByPriceAndNames(price, names);
     }
 }

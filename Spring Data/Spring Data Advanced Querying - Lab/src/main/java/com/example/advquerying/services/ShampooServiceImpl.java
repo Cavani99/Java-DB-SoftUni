@@ -5,12 +5,13 @@ import com.example.advquerying.entities.Size;
 import com.example.advquerying.repositories.ShampooRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Service
-public class ShampooServiceImpl implements ShampooService{
+public class ShampooServiceImpl implements ShampooService {
 
     private final ShampooRepository shampooRepository;
 

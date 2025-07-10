@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -41,4 +42,10 @@ public interface IngredientsRepository extends JpaRepository<Ingredient, Long> {
             "SET i.price = i.price + i.price * 0.1" +
             "WHERE i.name IN :names")
     int updateByNames(@Param("names") List<String> names);
+
+    @Modifying
+    @Query("UPDATE Ingredient as i " +
+            "SET i.price = i.price + :price " +
+            "WHERE i.name IN :names")
+    int updateByPriceAndNames(@Param("price") BigDecimal price, @Param("names") List<String> names);
 }
