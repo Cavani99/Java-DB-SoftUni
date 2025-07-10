@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -24,4 +23,10 @@ public interface IngredientsRepository extends JpaRepository<Ingredient, Long> {
             "join s.ingredients i where i in :ingredients")
     List<Shampoo> findByIngredientsIn(@Param(value = "ingredients")
                                       Set<Ingredient> ingredients);
+
+    @Query("SELECT s FROM Shampoo s " +
+            "JOIN s.ingredients i " +
+            "GROUP BY s " +
+            "HAVING COUNT(i) < :count")
+    List<Shampoo> findByIngredientsCountLessThan(@Param("count") long count);
 }

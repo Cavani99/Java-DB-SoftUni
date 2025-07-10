@@ -11,4 +11,6 @@ public interface IngredientsService  {
     void ingredientsStartingWith(String name);
     void ingredientsInStrings(Collection<String> names);
     void shampoosInGivenIngredients(List<String> strings);
+
+    void shampoosWithIngredientsLessThan(int count);
 }

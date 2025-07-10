@@ -46,4 +46,11 @@ public class IngredientsServiceImpl implements IngredientsService {
 
         shampoos.forEach(s -> System.out.printf("%s\n", s.getBrand()));
     }
+
+    @Override
+    public void shampoosWithIngredientsLessThan(int count) {
+        List<Shampoo> shampoos = ingredientsRepository.findByIngredientsCountLessThan(count);
+
+        shampoos.forEach(s -> System.out.printf("%s\n", s.getBrand()));
+    }
 }

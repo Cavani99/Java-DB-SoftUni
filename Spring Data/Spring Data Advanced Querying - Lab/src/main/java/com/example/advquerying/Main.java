@@ -35,10 +35,13 @@ public class Main implements CommandLineRunner {
 
         ingredientsService.ingredientsInStrings(strings);*/
         //shampooService.countShampoosLessThanPrice(BigDecimal.valueOf(8.50));
+        /*
         List<String> stringList = new ArrayList<>();
         stringList.add("Berry");
         stringList.add("Mineral-Collagen");
 
-        ingredientsService.shampoosInGivenIngredients(stringList);
+        ingredientsService.shampoosInGivenIngredients(stringList);*/
+        ingredientsService.shampoosWithIngredientsLessThan(2);
+
     }
 }
