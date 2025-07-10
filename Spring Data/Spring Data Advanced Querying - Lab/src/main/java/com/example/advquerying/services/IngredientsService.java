@@ -13,4 +13,5 @@ public interface IngredientsService  {
     void shampoosInGivenIngredients(List<String> strings);
 
     void shampoosWithIngredientsLessThan(int count);
+    void deleteByName(String name);
 }

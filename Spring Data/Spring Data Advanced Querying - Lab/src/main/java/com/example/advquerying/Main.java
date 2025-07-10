@@ -41,7 +41,7 @@ public class Main implements CommandLineRunner {
         stringList.add("Mineral-Collagen");
 
         ingredientsService.shampoosInGivenIngredients(stringList);*/
-        ingredientsService.shampoosWithIngredientsLessThan(2);
-
+        //ingredientsService.shampoosWithIngredientsLessThan(2);
+        ingredientsService.deleteByName("Nettle");
     }
 }

@@ -3,6 +3,7 @@ package com.example.advquerying.repositories;
 import com.example.advquerying.entities.Ingredient;
 import com.example.advquerying.entities.Shampoo;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -29,4 +30,9 @@ public interface IngredientsRepository extends JpaRepository<Ingredient, Long> {
             "GROUP BY s " +
             "HAVING COUNT(i) < :count")
     List<Shampoo> findByIngredientsCountLessThan(@Param("count") long count);
+
+    @Modifying
+    @Query("DELETE FROM Ingredient as i " +
+            "WHERE i.name = :name")
+    int deleteByName(@Param("name") String name);
 }
