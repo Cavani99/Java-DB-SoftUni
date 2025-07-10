@@ -6,6 +6,7 @@ import com.example.advquerying.repositories.IngredientsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -20,6 +21,13 @@ public class IngredientsServiceImpl implements IngredientsService {
     @Override
     public void ingredientsStartingWith(String name) {
         List<Ingredient> ingredients = ingredientsRepository.findByNameStartingWith(name);
+
+        ingredients.forEach(ingredient -> System.out.printf("%s\n", ingredient.getName()));
+    }
+
+    @Override
+    public void ingredientsInStrings(Collection<String> names) {
+        List<Ingredient> ingredients = ingredientsRepository.findByNameInOrderByPriceAsc(names);
 
         ingredients.forEach(ingredient -> System.out.printf("%s\n", ingredient.getName()));
     }
