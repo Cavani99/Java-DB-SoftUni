@@ -11,6 +11,8 @@ import springintro.service.CategoryService;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 
 @Component
 public class CommandLineRunnerImpl implements CommandLineRunner {
@@ -38,7 +40,8 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         AgeRestriction ageRestriction = parseAgeRestriction(input);
         bookService.findByAgeRestriction(ageRestriction);*/
         //bookService.findByCopiesLessThan(EditionType.GOLD, 5000);
-        bookService.findByPriceLessThanAndPriceGreaterThan(BigDecimal.valueOf(5), BigDecimal.valueOf(40));
+        //bookService.findByPriceLessThanAndPriceGreaterThan(BigDecimal.valueOf(5), BigDecimal.valueOf(40));
+        bookService.findByReleaseDateYearNot(2000);
     }
 
     private AgeRestriction parseAgeRestriction(String input) {

@@ -100,6 +100,14 @@ public class BookServiceImpl implements BookService {
         books.forEach(b -> System.out.printf("%s - $%.2f\n", b.getTitle(), b.getPrice()));
     }
 
+    @Override
+    public void findByReleaseDateYearNot(int year) {
+        List<Book> books = bookRepository.findByReleaseYearNot(year);
+
+        books.forEach(b -> System.out.printf("%s\n", b.getTitle()));
+    }
+
+
     private Book createBookFromInfo(String[] bookInfo) {
         EditionType editionType = EditionType.values()[Integer.parseInt(bookInfo[0])];
         LocalDate releaseDate = LocalDate

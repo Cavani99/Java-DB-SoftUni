@@ -2,6 +2,8 @@ package springintro.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import springintro.model.entity.AgeRestriction;
 import springintro.model.entity.Book;
@@ -25,4 +27,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findByEditionTypeAndCopiesLessThan(EditionType editionType, int copies);
 
     List<Book> findByPriceLessThanOrPriceGreaterThan(BigDecimal lowPrice, BigDecimal highPrice);
+
+    @Query("SELECT b FROM Book b WHERE YEAR(b.releaseDate) <> :year")
+    List<Book> findByReleaseYearNot(@Param("year") int year);
 }

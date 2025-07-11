@@ -7,6 +7,7 @@ import springintro.model.entity.EditionType;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface BookService {
@@ -22,4 +23,6 @@ public interface BookService {
     void findByCopiesLessThan(EditionType editionType, int copies);
 
     void findByPriceLessThanAndPriceGreaterThan(BigDecimal lowPrice, BigDecimal highPrice);
+
+    void findByReleaseDateYearNot(int year);
 }
