@@ -10,6 +10,7 @@ import springintro.service.BookService;
 import springintro.service.CategoryService;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 @Component
 public class CommandLineRunnerImpl implements CommandLineRunner {
@@ -30,13 +31,14 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         //printAllBooksAfterYear(2000);
 //        printAllAuthorsNamesWithBooksWithReleaseDateBeforeYear(1990);
-     //   printAllAuthorsAndNumberOfTheirBooks();
-       // pritnALlBooksByAuthorNameOrderByReleaseDate("George", "Powell");
+        //   printAllAuthorsAndNumberOfTheirBooks();
+        // pritnALlBooksByAuthorNameOrderByReleaseDate("George", "Powell");
         /*
         String input = "miNor";
         AgeRestriction ageRestriction = parseAgeRestriction(input);
         bookService.findByAgeRestriction(ageRestriction);*/
-        bookService.findByCopiesLessThan(EditionType.GOLD, 5000);
+        //bookService.findByCopiesLessThan(EditionType.GOLD, 5000);
+        bookService.findByPriceLessThanAndPriceGreaterThan(BigDecimal.valueOf(5), BigDecimal.valueOf(40));
     }
 
     private AgeRestriction parseAgeRestriction(String input) {

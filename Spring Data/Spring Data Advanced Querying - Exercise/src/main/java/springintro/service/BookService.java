@@ -6,6 +6,7 @@ import springintro.model.entity.Book;
 import springintro.model.entity.EditionType;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface BookService {
@@ -19,4 +20,6 @@ public interface BookService {
 
     void findByAgeRestriction(AgeRestriction ageRestriction);
     void findByCopiesLessThan(EditionType editionType, int copies);
+
+    void findByPriceLessThanAndPriceGreaterThan(BigDecimal lowPrice, BigDecimal highPrice);
 }

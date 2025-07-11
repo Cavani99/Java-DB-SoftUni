@@ -93,6 +93,13 @@ public class BookServiceImpl implements BookService {
         books.forEach(b -> System.out.println(b.getTitle()));
     }
 
+    @Override
+    public void findByPriceLessThanAndPriceGreaterThan(BigDecimal lowPrice, BigDecimal highPrice) {
+        List<Book> books = bookRepository.findByPriceLessThanOrPriceGreaterThan(lowPrice, highPrice);
+
+        books.forEach(b -> System.out.printf("%s - $%.2f\n", b.getTitle(), b.getPrice()));
+    }
+
     private Book createBookFromInfo(String[] bookInfo) {
         EditionType editionType = EditionType.values()[Integer.parseInt(bookInfo[0])];
         LocalDate releaseDate = LocalDate
