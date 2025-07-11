@@ -86,6 +86,13 @@ public class BookServiceImpl implements BookService {
         books.forEach(b -> System.out.println(b.getTitle()));
     }
 
+    @Override
+    public void findByCopiesLessThan(EditionType editionType, int copies) {
+        List<Book> books = bookRepository.findByEditionTypeAndCopiesLessThan(editionType, copies);
+
+        books.forEach(b -> System.out.println(b.getTitle()));
+    }
+
     private Book createBookFromInfo(String[] bookInfo) {
         EditionType editionType = EditionType.values()[Integer.parseInt(bookInfo[0])];
         LocalDate releaseDate = LocalDate

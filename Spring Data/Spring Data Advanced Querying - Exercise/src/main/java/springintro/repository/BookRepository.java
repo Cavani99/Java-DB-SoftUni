@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import springintro.model.entity.AgeRestriction;
 import springintro.model.entity.Book;
+import springintro.model.entity.EditionType;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,4 +20,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findAllByAuthor_FirstNameAndAuthor_LastNameOrderByReleaseDateDescTitle(String author_firstName, String author_lastName);
 
     List<Book> findByAgeRestriction(AgeRestriction ageRestriction);
+
+    List<Book> findByEditionTypeAndCopiesLessThan(EditionType editionType, int copies);
 }

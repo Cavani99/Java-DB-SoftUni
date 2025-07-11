@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import springintro.model.entity.AgeRestriction;
 import springintro.model.entity.Book;
+import springintro.model.entity.EditionType;
 import springintro.service.AuthorService;
 import springintro.service.BookService;
 import springintro.service.CategoryService;
@@ -31,10 +32,11 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 //        printAllAuthorsNamesWithBooksWithReleaseDateBeforeYear(1990);
      //   printAllAuthorsAndNumberOfTheirBooks();
        // pritnALlBooksByAuthorNameOrderByReleaseDate("George", "Powell");
-
+        /*
         String input = "miNor";
         AgeRestriction ageRestriction = parseAgeRestriction(input);
-        bookService.findByAgeRestriction(ageRestriction);
+        bookService.findByAgeRestriction(ageRestriction);*/
+        bookService.findByCopiesLessThan(EditionType.GOLD, 5000);
     }
 
     private AgeRestriction parseAgeRestriction(String input) {
