@@ -50,7 +50,8 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         bookService.findByReleaseDateBefore(date);*/
         //authorService.findByFirstNameEndingWith("e");
         //bookService.findByTitleContainingIgnoreCase("WOR");
-        bookService.findByAuthorLastName("gr");
+        //bookService.findByAuthorLastName("gr");
+        bookService.findBooksWithHigherCount(40);
     }
 
     private AgeRestriction parseAgeRestriction(String input) {

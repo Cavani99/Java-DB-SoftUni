@@ -35,6 +35,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     List<Book> findByTitleContainingIgnoreCase(String name);
 
-
     List<Book> findByAuthorLastNameStartingWithIgnoreCase(String end);
+
+    @Query("SELECT count(b) FROM Book b WHERE length(title) > :length")
+    int findBooksWithHigherCount(@Param("length") int length);
 }

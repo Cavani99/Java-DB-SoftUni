@@ -128,6 +128,13 @@ public class BookServiceImpl implements BookService {
         books.forEach(b -> System.out.printf("%s (%s %s)\n", b.getTitle(), b.getAuthor().getFirstName(), b.getAuthor().getLastName()));
     }
 
+    @Override
+    public void findBooksWithHigherCount(int length) {
+        int count = bookRepository.findBooksWithHigherCount(length);
+
+        System.out.printf("There are %d books with longer titles than %d symbols.\n", count, length);
+    }
+
 
     private Book createBookFromInfo(String[] bookInfo) {
         EditionType editionType = EditionType.values()[Integer.parseInt(bookInfo[0])];
