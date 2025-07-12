@@ -34,4 +34,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findByReleaseDateBefore(LocalDate date);
 
     List<Book> findByTitleContainingIgnoreCase(String name);
+
+
+    List<Book> findByAuthorLastNameStartingWithIgnoreCase(String end);
 }

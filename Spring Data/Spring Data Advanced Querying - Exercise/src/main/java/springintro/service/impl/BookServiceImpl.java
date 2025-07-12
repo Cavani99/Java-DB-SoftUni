@@ -121,6 +121,13 @@ public class BookServiceImpl implements BookService {
         books.forEach(b -> System.out.printf("%s\n", b.getTitle()));
     }
 
+    @Override
+    public void findByAuthorLastName(String end) {
+        List<Book> books = bookRepository.findByAuthorLastNameStartingWithIgnoreCase(end);
+
+        books.forEach(b -> System.out.printf("%s (%s %s)\n", b.getTitle(), b.getAuthor().getFirstName(), b.getAuthor().getLastName()));
+    }
+
 
     private Book createBookFromInfo(String[] bookInfo) {
         EditionType editionType = EditionType.values()[Integer.parseInt(bookInfo[0])];

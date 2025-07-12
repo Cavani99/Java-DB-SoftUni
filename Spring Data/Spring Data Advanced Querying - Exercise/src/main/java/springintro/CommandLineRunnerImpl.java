@@ -49,7 +49,8 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         LocalDate date = LocalDate.parse(data, formatter);
         bookService.findByReleaseDateBefore(date);*/
         //authorService.findByFirstNameEndingWith("e");
-        bookService.findByTitleContainingIgnoreCase("WOR");
+        //bookService.findByTitleContainingIgnoreCase("WOR");
+        bookService.findByAuthorLastName("gr");
     }
 
     private AgeRestriction parseAgeRestriction(String input) {

@@ -1,6 +1,7 @@
 package springintro.service;
 
 
+import org.springframework.data.repository.query.Param;
 import springintro.model.entity.AgeRestriction;
 import springintro.model.entity.Book;
 import springintro.model.entity.EditionType;
@@ -28,4 +29,5 @@ public interface BookService {
     void findByReleaseDateBefore(LocalDate date);
 
     void findByTitleContainingIgnoreCase(String name);
+    void findByAuthorLastName(String end);
 }
