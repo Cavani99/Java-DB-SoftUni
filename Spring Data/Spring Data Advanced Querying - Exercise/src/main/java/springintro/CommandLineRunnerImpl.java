@@ -43,10 +43,12 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         //bookService.findByCopiesLessThan(EditionType.GOLD, 5000);
         //bookService.findByPriceLessThanAndPriceGreaterThan(BigDecimal.valueOf(5), BigDecimal.valueOf(40));
         //bookService.findByReleaseDateYearNot(2000);
+        /*
         String data = "12-04-1992";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate date = LocalDate.parse(data, formatter);
-        bookService.findByReleaseDateBefore(date);
+        bookService.findByReleaseDateBefore(date);*/
+        authorService.findByFirstNameEndingWith("e");
     }
 
     private AgeRestriction parseAgeRestriction(String input) {

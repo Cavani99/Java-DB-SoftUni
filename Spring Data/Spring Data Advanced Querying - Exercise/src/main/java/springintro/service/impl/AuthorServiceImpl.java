@@ -2,6 +2,7 @@ package springintro.service.impl;
 
 import org.springframework.stereotype.Service;
 import springintro.model.entity.Author;
+import springintro.model.entity.Book;
 import springintro.repository.AuthorRepository;
 import springintro.service.AuthorService;
 
@@ -60,5 +61,12 @@ public class AuthorServiceImpl implements AuthorService {
                         author.getLastName(),
                         author.getBooks().size()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void findByFirstNameEndingWith(String end) {
+        List<Author> authors = authorRepository.findByFirstNameEndingWith(end);
+
+        authors.forEach(a -> System.out.printf("%s %s\n", a.getFirstName(), a.getLastName()));
     }
 }
