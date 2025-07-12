@@ -30,6 +30,6 @@ public interface BookService {
 
     void findByTitleContainingIgnoreCase(String name);
     void findByAuthorLastName(String end);
-
     void findBooksWithHigherCount(int length);
+    void findBooksByTitle(String title);
 }

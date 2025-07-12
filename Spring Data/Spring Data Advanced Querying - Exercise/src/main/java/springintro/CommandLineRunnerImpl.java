@@ -52,7 +52,8 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         //bookService.findByTitleContainingIgnoreCase("WOR");
         //bookService.findByAuthorLastName("gr");
         //bookService.findBooksWithHigherCount(40);
-        authorService.finBookCopiesForAuthor();
+        //authorService.finBookCopiesForAuthor();
+        bookService.findBooksByTitle("Things Fall Apart");
     }
 
     private AgeRestriction parseAgeRestriction(String input) {
