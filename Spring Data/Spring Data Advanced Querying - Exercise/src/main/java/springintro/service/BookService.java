@@ -26,4 +26,6 @@ public interface BookService {
 
     void findByReleaseDateYearNot(int year);
     void findByReleaseDateBefore(LocalDate date);
+
+    void findByTitleContainingIgnoreCase(String name);
 }

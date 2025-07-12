@@ -32,4 +32,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findByReleaseYearNot(@Param("year") int year);
 
     List<Book> findByReleaseDateBefore(LocalDate date);
+
+    List<Book> findByTitleContainingIgnoreCase(String name);
 }

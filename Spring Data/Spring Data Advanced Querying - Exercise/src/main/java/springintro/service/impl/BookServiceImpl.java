@@ -114,6 +114,13 @@ public class BookServiceImpl implements BookService {
         books.forEach(b -> System.out.printf("%s %s %.2f\n", b.getTitle(), b.getEditionType(), b.getPrice()));
     }
 
+    @Override
+    public void findByTitleContainingIgnoreCase(String name) {
+        List<Book> books = bookRepository.findByTitleContainingIgnoreCase(name);
+
+        books.forEach(b -> System.out.printf("%s\n", b.getTitle()));
+    }
+
 
     private Book createBookFromInfo(String[] bookInfo) {
         EditionType editionType = EditionType.values()[Integer.parseInt(bookInfo[0])];
