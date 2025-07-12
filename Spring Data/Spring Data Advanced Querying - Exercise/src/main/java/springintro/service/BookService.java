@@ -25,4 +25,5 @@ public interface BookService {
     void findByPriceLessThanAndPriceGreaterThan(BigDecimal lowPrice, BigDecimal highPrice);
 
     void findByReleaseDateYearNot(int year);
+    void findByReleaseDateBefore(LocalDate date);
 }

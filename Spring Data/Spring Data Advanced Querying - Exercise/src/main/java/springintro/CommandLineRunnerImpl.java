@@ -12,6 +12,7 @@ import springintro.service.CategoryService;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Component
@@ -41,7 +42,11 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         bookService.findByAgeRestriction(ageRestriction);*/
         //bookService.findByCopiesLessThan(EditionType.GOLD, 5000);
         //bookService.findByPriceLessThanAndPriceGreaterThan(BigDecimal.valueOf(5), BigDecimal.valueOf(40));
-        bookService.findByReleaseDateYearNot(2000);
+        //bookService.findByReleaseDateYearNot(2000);
+        String data = "12-04-1992";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate date = LocalDate.parse(data, formatter);
+        bookService.findByReleaseDateBefore(date);
     }
 
     private AgeRestriction parseAgeRestriction(String input) {
