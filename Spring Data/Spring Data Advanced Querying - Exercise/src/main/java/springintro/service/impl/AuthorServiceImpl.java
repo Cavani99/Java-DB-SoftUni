@@ -69,4 +69,15 @@ public class AuthorServiceImpl implements AuthorService {
 
         authors.forEach(a -> System.out.printf("%s %s\n", a.getFirstName(), a.getLastName()));
     }
+
+    @Override
+    public void finBookCopiesForAuthor() {
+        List<Object[]> authors = authorRepository.findBookCopiesForAuthor();
+
+        authors.forEach(a -> {
+            Author author = (Author) a[0];
+            Long totalCopies = (Long) a[1];
+            System.out.printf("%s %s - %d\n", author.getFirstName(), author.getLastName(), totalCopies);
+        });
+    }
 }

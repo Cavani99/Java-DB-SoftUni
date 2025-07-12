@@ -15,4 +15,6 @@ public interface AuthorService {
     List<String> getAllAuthorsOrderByCountOfTheirBooks();
 
     void findByFirstNameEndingWith(String end);
+
+    void finBookCopiesForAuthor();
 }
