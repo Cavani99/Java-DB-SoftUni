@@ -1,6 +1,7 @@
 package com.example.entities.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class EmployeeDto {
 
@@ -41,6 +42,16 @@ public class EmployeeDto {
 
     private String last_name;
     private BigDecimal salary;
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    private LocalDate birthday;
 
     public EmployeeDto() {
     }

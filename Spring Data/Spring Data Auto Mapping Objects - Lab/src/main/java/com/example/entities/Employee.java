@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "employees")
@@ -23,6 +24,43 @@ public class Employee {
 
     @Column(name = "birthday")
     private LocalDate birthday;
+
+    @Column(name = "is_on_holiday")
+    private boolean isOnHoliday;
+
+    @ManyToMany
+    @JoinTable(name = "managers",
+            joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "manager_id", referencedColumnName = "id"))
+    private Set<Employee> managerEmployees;
+
+    public boolean isOnHoliday() {
+        return isOnHoliday;
+    }
+
+    public void setOnHoliday(boolean onHoliday) {
+        isOnHoliday = onHoliday;
+    }
+
+    public Set<Employee> getManagerEmployees() {
+        return managerEmployees;
+    }
+
+    public void setManagerEmployees(Set<Employee> managerEmployees) {
+        this.managerEmployees = managerEmployees;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    @OneToOne(optional = false)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
 
     public long getId() {
         return id;
@@ -64,17 +102,6 @@ public class Employee {
         this.birthday = birthday;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    @OneToOne(optional = false)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Address address;
 
     public Employee() {
     }
