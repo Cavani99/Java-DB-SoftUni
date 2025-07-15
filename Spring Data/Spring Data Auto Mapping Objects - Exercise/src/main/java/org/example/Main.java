@@ -6,6 +6,11 @@ import org.example.services.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class Main implements CommandLineRunner {
 
@@ -24,6 +29,21 @@ public class Main implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         //userService.RegisterUser("ivan@ivan.com", "Ivan12", "Ivan12", "Ivan");
-        userService.LoginUser("ivan@ivan.com", "Ivan12");
+        //userService.LoginUser("ivan@ivan.com", "Ivan12");
+        //userService.Logout();
+        /*
+        gameService.AddGame("Overwatch", BigDecimal.valueOf(100.00), 15.5, "https://www.youtube.com/watch?v=FqnKB22pOC0", "https://us.battle.net/" +
+                "forums/static/images/social-thumbs/overwatch.png", "Overwatch is a" +
+                "team-based multiplayer online first-person shooter video game" +
+                "developed and published by Blizzard Entertainment.", LocalDate.of(2016, 5, 24));*/
+
+        /*
+        List<String> fields = new ArrayList<>();
+        fields.add("price=80.00");
+        fields.add("size=12.0");
+        gameService.EditGame(2, fields);*/
+
+        gameService.DeleteGame(2);
+
     }
 }

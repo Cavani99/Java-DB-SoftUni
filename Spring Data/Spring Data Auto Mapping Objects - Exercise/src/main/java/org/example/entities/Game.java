@@ -24,7 +24,7 @@ public class Game {
     private String thumbnail;
 
     @Column(name = "size")
-    private int size;
+    private double size;
 
     @Column(name = "price")
     private BigDecimal price;
@@ -77,11 +77,11 @@ public class Game {
         this.thumbnail = thumbnail;
     }
 
-    public int getSize() {
+    public double getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(double size) {
         this.size = size;
     }
 
