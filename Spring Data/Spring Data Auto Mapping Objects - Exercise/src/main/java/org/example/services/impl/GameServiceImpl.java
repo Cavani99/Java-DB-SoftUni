@@ -1,16 +1,19 @@
 package org.example.services.impl;
 
 import org.example.entities.Game;
+import org.example.entities.User;
 import org.example.repositories.GameRepo;
+import org.example.repositories.UserRepo;
 import org.example.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.MatchResult;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,10 +21,12 @@ import java.util.regex.Pattern;
 public class GameServiceImpl implements GameService {
 
     private final GameRepo gameRepo;
+    private final UserRepo userRepo;
 
     @Autowired
-    public GameServiceImpl(GameRepo gameRepo) {
+    public GameServiceImpl(GameRepo gameRepo, UserRepo userRepo) {
         this.gameRepo = gameRepo;
+        this.userRepo = userRepo;
     }
 
     @Override
@@ -164,6 +169,41 @@ public class GameServiceImpl implements GameService {
 
         gameRepo.delete(game.get());
         System.out.println("Deleted " + game.get().getTitle());
+    }
+
+    @Override
+    public void AllGames() {
+        List<Game> games = gameRepo.findAll();
+
+        for (Game game : games) {
+            System.out.println(game.getTitle() + " " + game.getPrice());
+        }
+    }
+
+    @Override
+    public void DetailGame(String title) {
+        Optional<Game> game = gameRepo.findByTitle(title);
+
+        if (game.isPresent()) {
+            Game game1 = game.get();
+
+            String date = game1.getReleaseDate().format(DateTimeFormatter.ofPattern("d-MM-y"));
+
+            System.out.printf("Title: %s\n\nPrice: %.2f\n\nDescription: %s\n\nRelease date: %s\n",
+                    game1.getTitle(), game1.getPrice(), game1.getDescription(), date);
+        }
+    }
+
+    @Override
+    public void OwnedGames() {
+        Optional<User> user = userRepo.findByLogged(true);
+
+        if(user.isPresent()){
+            Set<Game> games = user.get().getGames();
+            for (Game game : games) {
+                System.out.println(game.getTitle() + "\n\n");
+            }
+        }
     }
 
     private boolean validateTitle(String title) {

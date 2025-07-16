@@ -35,15 +35,15 @@ public class Main implements CommandLineRunner {
         gameService.AddGame("Overwatch", BigDecimal.valueOf(100.00), 15.5, "https://www.youtube.com/watch?v=FqnKB22pOC0", "https://us.battle.net/" +
                 "forums/static/images/social-thumbs/overwatch.png", "Overwatch is a" +
                 "team-based multiplayer online first-person shooter video game" +
-                "developed and published by Blizzard Entertainment.", LocalDate.of(2016, 5, 24));*/
+                "developed and published by Blizzard Entertainment.", LocalDate.of(2016, 5, 24));
 
-        /*
         List<String> fields = new ArrayList<>();
         fields.add("price=80.00");
         fields.add("size=12.0");
-        gameService.EditGame(2, fields);*/
-
-        gameService.DeleteGame(2);
-
+        gameService.EditGame(2, fields);
+        gameService.DeleteGame(2);*/
+        //gameService.AllGames();
+        //gameService.DetailGame("Overwatch");
+        gameService.OwnedGames();
     }
 }

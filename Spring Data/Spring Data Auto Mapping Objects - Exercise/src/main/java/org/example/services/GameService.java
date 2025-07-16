@@ -10,4 +10,10 @@ public interface GameService {
     void EditGame(long id, List<String> values);
 
     void DeleteGame(long id);
+
+    void AllGames();
+
+    void DetailGame(String title);
+
+    void OwnedGames();
 }
