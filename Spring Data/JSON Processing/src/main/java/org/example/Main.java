@@ -8,9 +8,11 @@ import org.example.entities.Categories;
 import org.example.entities.Products;
 import org.example.entities.Users;
 import org.example.entities.dto.ProductsDto;
+import org.example.entities.dto.UsersDto;
 import org.example.repositories.CategoriesRepo;
 import org.example.repositories.ProductsRepo;
 import org.example.repositories.UsersRepo;
+import org.example.services.UsersService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -24,10 +26,13 @@ import java.util.*;
 @Component
 public class Main implements CommandLineRunner {
     private UsersRepo usersRepo;
+
+    private UsersService usersService;
     private CategoriesRepo categoriesRepo;
     private ProductsRepo productsRepo;
 
-    public Main(UsersRepo usersRepo, CategoriesRepo categoriesRepo, ProductsRepo productsRepo) {
+    public Main(UsersService usersService, UsersRepo usersRepo, CategoriesRepo categoriesRepo, ProductsRepo productsRepo) {
+        this.usersService = usersService;
         this.usersRepo = usersRepo;
         this.categoriesRepo = categoriesRepo;
         this.productsRepo = productsRepo;
@@ -36,7 +41,8 @@ public class Main implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //importJson();
-        productsInRange();
+        //productsInRange();
+        successfullySoldProducts();
     }
 
     private void importJson() throws IOException {
@@ -108,6 +114,26 @@ public class Main implements CommandLineRunner {
 
             // Write the list to JSON
             objectMapper.writeValue(file, productsDtos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void successfullySoldProducts() {
+        List<UsersDto> users = usersService.getUsersWithSoldProducts();
+
+        List<UsersDto> usersDtos = new ArrayList<>(users);
+
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            // Optional: make the JSON output pretty
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+            File file = new File("Spring Data/JSON Processing/src/main/resources/files/export/successfully_sold_products.json");
+
+            // Write the list to JSON
+            objectMapper.writeValue(file, usersDtos);
         } catch (Exception e) {
             e.printStackTrace();
         }
